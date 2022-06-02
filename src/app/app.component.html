@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-12">
+      <!-- Tab Nav -->
+      <div class="nav-wrapper position-relative mb-2">
+          <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-text" role="tablist">
+              <li class="nav-item">
+                  <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="#tabs-text-1" role="tab" aria-controls="tabs-text-1" aria-selected="true">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" data-toggle="tab" href="#tabs-text-2" role="tab" aria-controls="tabs-text-2" aria-selected="false">Profile</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-3-tab" data-toggle="tab" href="#tabs-text-3" role="tab" aria-controls="tabs-text-3" aria-selected="false">Messages</a>
+              </li>
+          </ul>
+      </div>
+      <!-- End of Tab Nav -->
+      <!-- Tab Content -->
+      <div class="card">
+          <div class="card-body p-0">
+              <div class="tab-content" id="tabcontent1">
+                  <div class="tab-pane fade show active" id="tabs-text-1" role="tabpanel" aria-labelledby="tabs-text-1-tab">
+                    <div class="main">
+                      <h1>My To Do List</h1>
+                      <label for="addItemInput">What would you like to do today?</label>
+                    
+                      <input
+                        #newItem
+                        placeholder="add an item"
+                        (keyup.enter)="addItem(newItem.value); newItem.value = ''"
+                        class="lg-text-input form-control"
+                        id="addItemInput"
+                      />
+                    
+                      <button class="btn btn-primary animate-up-2" (click)="addItem(newItem.value)">Add</button>
+                    
+                      <div class="btn-wrapper">
+                        <button
+                          class="btn btn-menu btn-outline-primary"
+                          [class.active]="filter == 'all'"
+                          (click)="filter = 'all'">
+                          All
+                        </button>
+                    
+                        <button
+                          class="btn btn-menu btn-outline-primary"
+                          [class.active]="filter == 'active'"
+                          (click)="filter = 'active'">
+                          To Do
+                        </button>
+                    
+                        <button
+                          class="btn btn-menu btn-outline-primary"
+                          [class.active]="filter == 'done'"
+                          (click)="filter = 'done'">
+                          Done
+                        </button>
+                      </div>
+                    
+                      <h2>{{items.length}} <span *ngIf="items.length === 1; else elseBlock">item</span>
+                        <ng-template #elseBlock>items</ng-template></h2>
+                        
+                        <ul>
+                          <li *ngFor="let item of items">
+                            <app-item (remove)="remove(item)" [item]="item"></app-item>
+                          </li>
+                        </ul>
+                        
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="tabs-text-2" role="tabpanel" aria-labelledby="tabs-text-2-tab">
+                      Empty Panel 1
+                  </div>
+                  <div class="tab-pane fade" id="tabs-text-3" role="tabpanel" aria-labelledby="tabs-text-3-tab">
+                      <p>Empty Panel 2</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- End of Tab Content -->
+  </div>
+</div>
