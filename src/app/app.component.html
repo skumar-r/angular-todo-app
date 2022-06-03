@@ -7,7 +7,7 @@
                   <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="#tabs-text-1" role="tab" aria-controls="tabs-text-1" aria-selected="true">Home</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" data-toggle="tab" href="#tabs-text-2" role="tab" aria-controls="tabs-text-2" aria-selected="false">Profile</a>
+                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" data-toggle="tab" href="#tabs-text-2" role="tab" aria-controls="tabs-text-2" aria-selected="false">Todo App</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-3-tab" data-toggle="tab" href="#tabs-text-3" role="tab" aria-controls="tabs-text-3" aria-selected="false">Messages</a>
@@ -20,6 +20,10 @@
           <div class="card-body p-0">
               <div class="tab-content" id="tabcontent1">
                   <div class="tab-pane fade show active" id="tabs-text-1" role="tabpanel" aria-labelledby="tabs-text-1-tab">
+                    <div id="barchart" class="bar-chart main"></div>
+                    <div id="piechart" class="pie-chart main"></div>
+                  </div>
+                  <div class="tab-pane fade " id="tabs-text-2" role="tabpanel" aria-labelledby="tabs-text-2-tab">
                     <div class="main">
                       <h1>My To Do List</h1>
                       <label for="addItemInput">What would you like to do today?</label>
@@ -66,10 +70,8 @@
                           </li>
                         </ul>
                         
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="tabs-text-2" role="tabpanel" aria-labelledby="tabs-text-2-tab">
-                      Empty Panel 1
+                    
+                      </div>                                  
                   </div>
                   <div class="tab-pane fade" id="tabs-text-3" role="tabpanel" aria-labelledby="tabs-text-3-tab">
                       <p>Empty Panel 2</p>
