@@ -24,10 +24,12 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/rocket"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/rocket.css"              
             ],
             "scripts": []
           },
