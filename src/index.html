@@ -69,6 +69,36 @@
     });
   });
 
+  function callAPI_1() {
+    document.getElementById("btnSpinner1").hidden = false;
+    document.getElementById("apiResponseText1").disabled = true;
+    fetch("/wsproxy1")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("btnSpinner1").hidden = true;
+        document.getElementById("apiResponseText1").disabled = false;
+        document.getElementById("apiResponseText1").value = JSON.stringify(data, null, 4);
+      }).finally(() => {
+        document.getElementById("btnSpinner1").hidden = true;
+        document.getElementById("apiResponseText1").disabled = false;
+      });
+  }
+
+  function callAPI_2() {
+    document.getElementById("btnSpinner2").hidden = false;
+    document.getElementById("apiResponseText2").disabled = true;
+    fetch("/wsproxy2")
+      .then(res => res.json())      
+      .then(data => {
+        document.getElementById("btnSpinner2").hidden = true;
+        document.getElementById("apiResponseText2").disabled = false;
+        document.getElementById("apiResponseText2").value = JSON.stringify(data, null, 4);
+      }).finally(() => {
+        document.getElementById("btnSpinner2").hidden = true;
+        document.getElementById("apiResponseText2").disabled = false;
+      });
+  }
+
 </script>
 
 </html>

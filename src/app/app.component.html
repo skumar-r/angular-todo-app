@@ -1,84 +1,116 @@
 <div class="row">
   <div class="col-12">
-      <!-- Tab Nav -->
-      <div class="nav-wrapper position-relative mb-2">
-          <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-text" role="tablist">
-              <li class="nav-item">
-                  <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="#tabs-text-1" role="tab" aria-controls="tabs-text-1" aria-selected="true">Home</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" data-toggle="tab" href="#tabs-text-2" role="tab" aria-controls="tabs-text-2" aria-selected="false">Todo App</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-3-tab" data-toggle="tab" href="#tabs-text-3" role="tab" aria-controls="tabs-text-3" aria-selected="false">Other Links</a>
-              </li>
-          </ul>
-      </div>
-      <!-- End of Tab Nav -->
-      <!-- Tab Content -->
-      <div class="card">
-          <div class="card-body p-0">
-              <div class="tab-content" id="tabcontent1">
-                  <div class="tab-pane fade show active" id="tabs-text-1" role="tabpanel" aria-labelledby="tabs-text-1-tab">
-                    <div id="barchart" class="bar-chart main"></div>
-                    <div id="piechart" class="pie-chart main"></div>
-                  </div>
-                  <div class="tab-pane fade " id="tabs-text-2" role="tabpanel" aria-labelledby="tabs-text-2-tab">
-                    <div class="main">
-                      <h1>My To Do List</h1>
-                      <label for="addItemInput">What would you like to do today?</label>
-                    
-                      <input
-                        #newItem
-                        placeholder="add an item"
-                        (keyup.enter)="addItem(newItem.value); newItem.value = ''"
-                        class="lg-text-input form-control"
-                        id="addItemInput"
-                      />
-                    
-                      <button class="btn btn-primary animate-up-2" (click)="addItem(newItem.value)">Add</button>
-                    
-                      <div class="btn-wrapper">
-                        <button
-                          class="btn btn-menu btn-outline-primary"
-                          [class.active]="filter == 'all'"
-                          (click)="filter = 'all'">
-                          All
-                        </button>
-                    
-                        <button
-                          class="btn btn-menu btn-outline-primary"
-                          [class.active]="filter == 'active'"
-                          (click)="filter = 'active'">
-                          To Do
-                        </button>
-                    
-                        <button
-                          class="btn btn-menu btn-outline-primary"
-                          [class.active]="filter == 'done'"
-                          (click)="filter = 'done'">
-                          Done
+    <!-- Tab Nav -->
+    <div class="nav-wrapper position-relative mb-2">
+      <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-text" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="#tabs-text-1"
+            role="tab" aria-controls="tabs-text-1" aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-2-tab" data-toggle="tab" href="#tabs-text-2" role="tab"
+            aria-controls="tabs-text-2" aria-selected="false">Todo App</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-3-tab" data-toggle="tab" href="#tabs-text-3" role="tab"
+            aria-controls="tabs-text-3" aria-selected="false">Other Links</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mb-sm-3 mb-md-0" id="tabs-text-4-tab" data-toggle="tab" href="#tabs-text-4" role="tab"
+            aria-controls="tabs-text-4" aria-selected="false">WS Proxy API</a>
+        </li>
+      </ul>
+    </div>
+    <!-- End of Tab Nav -->
+    <!-- Tab Content -->
+    <div class="card">
+      <div class="card-body p-0">
+        <div class="tab-content" id="tabcontent1">
+          <div class="tab-pane fade show active" id="tabs-text-1" role="tabpanel" aria-labelledby="tabs-text-1-tab">
+            <div id="barchart" class="bar-chart main"></div>
+            <div id="piechart" class="pie-chart main"></div>
+          </div>
+          <div class="tab-pane fade " id="tabs-text-2" role="tabpanel" aria-labelledby="tabs-text-2-tab">
+            <div class="main">
+              <h1>My To Do List</h1>
+              <label for="addItemInput">What would you like to do today?</label>
+
+              <input #newItem placeholder="add an item" (keyup.enter)="addItem(newItem.value); newItem.value = ''"
+                class="lg-text-input form-control" id="addItemInput" />
+
+              <button class="btn btn-primary animate-up-2" (click)="addItem(newItem.value)">Add</button>
+
+              <div class="btn-wrapper">
+                <button class="btn btn-menu btn-outline-primary" [class.active]="filter == 'all'"
+                  (click)="filter = 'all'">
+                  All
+                </button>
+
+                <button class="btn btn-menu btn-outline-primary" [class.active]="filter == 'active'"
+                  (click)="filter = 'active'">
+                  To Do
+                </button>
+
+                <button class="btn btn-menu btn-outline-primary" [class.active]="filter == 'done'"
+                  (click)="filter = 'done'">
+                  Done
+                </button>
+              </div>
+
+              <h2>{{items.length}} <span *ngIf="items.length === 1; else elseBlock">item</span>
+                <ng-template #elseBlock>items</ng-template>
+              </h2>
+
+              <ul>
+                <li *ngFor="let item of items">
+                  <app-item (remove)="remove(item)" [item]="item"></app-item>
+                </li>
+              </ul>
+
+
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tabs-text-3" role="tabpanel" aria-labelledby="tabs-text-3-tab">
+            <p>Wordpress Website: <a href="/blog">Wordpress - Blog</a></p>
+          </div>
+          <div class="tab-pane fade" id="tabs-text-4" role="tabpanel" aria-labelledby="tabs-text-4-tab">
+            <p>Sample WS Proxy API Calls</p>
+            <div class="accordion" id="accordionPanel1">
+              <div class="card card-sm card-body border-light mb-0">
+                  <a href="#panel-1" data-target="#panel-1" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-1">
+                      <span class="h6 mb-0 font-weight-bold">Check WS-Proxy API - All Vendors</span>
+                      <span class="icon"><i class="fas fa-plus"></i></span>
+                  </a>
+                  <div class="collapse" id="panel-1">
+                      <div class="pt-3">
+                        <textarea id="apiResponseText1" name="apiResponseText" rows="15" cols="80"></textarea>
+                        <button class="btn btn-primary" type="button" name="text" onclick="callAPI_1();">
+                          Call API <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"
+                            id="btnSpinner1" hidden="true"></span>
                         </button>
                       </div>
-                    
-                      <h2>{{items.length}} <span *ngIf="items.length === 1; else elseBlock">item</span>
-                        <ng-template #elseBlock>items</ng-template></h2>
-                        
-                        <ul>
-                          <li *ngFor="let item of items">
-                            <app-item (remove)="remove(item)" [item]="item"></app-item>
-                          </li>
-                        </ul>
-                        
-                    
-                      </div>                                  
-                  </div>
-                  <div class="tab-pane fade" id="tabs-text-3" role="tabpanel" aria-labelledby="tabs-text-3-tab">
-                      <p>Wordpress Website: <a href="/blog">Wordpress - Blog</a></p>
                   </div>
               </div>
+              <div class="card card-sm card-body border-light mb-0">
+                  <a href="#panel-2" data-target="#panel-2" class="accordion-panel-header" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-1">
+                      <span class="h6 mb-0 font-weight-bold">Check WS-Proxy API - All Locations</span>
+                      <span class="icon"><i class="fas fa-plus"></i></span>
+                  </a>
+                  <div class="collapse" id="panel-2">
+                      <div class="pt-3">
+                        <textarea id="apiResponseText2" name="apiResponseText" rows="15" cols="80"></textarea>
+                        <button class="btn btn-primary" type="button" name="text" onclick="callAPI_2();">
+                          Call API <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"
+                            id="btnSpinner2" hidden="true"></span>
+                        </button>
+                      </div>
+                  </div>
+              </div>
+              </div>
           </div>
+          </div>
+        </div>
       </div>
-      <!-- End of Tab Content -->
+    </div>
+    <!-- End of Tab Content -->
   </div>
-</div>
